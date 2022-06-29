@@ -1,12 +1,15 @@
 <template>
-  <div id="detail"></div>
+  <div id="container">
+      <router-view/>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'Detail',
+    name:'Activity'
 }
 </script>
 
 <style scoped>
+
 </style>

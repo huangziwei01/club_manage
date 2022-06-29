@@ -17,16 +17,49 @@ const NoticeSecondCheck = () => import('@/views/notice/notice_second_check')
 //社团管理部分
 const Club = () => import('@/views/club')
 const AllClubs = () => import('@/views/club/all_clubs')
+const Detail = () => import('@/views/club/all_clubs/detail')
+
 const MyClub = () => import('@/views/club/my_club')
 const MyMembers = () => import('@/views/club/my_club/my_members')
+const MyActivities = () => import('@/views/club/my_club/my_activities')
+const MyExit = () => import('@/views/club/my_club/my_exit')
+const MyChange = () => import('@/views/club/my_club/my_change')
+const MyCancel = () => import('@/views/club/my_club/my_cancel')
+
 const ClubFirstCheck = () => import('@/views/club/club_first_check')
 const ClubSecondCheck = () => import('@/views/club/club_second_check')
 
+//社团活动部分
+const Activity = () => import('@/views/activity')
+const AllActivities = () => import('@/views/activity/all_activities')
+const MyActivitiies = () => import('@/views/activity/my_activities')
+const ActivityDetail = () => import('@/views/activity/my_activities/activity_detail')
+const ActivityRecord = () => import('@/views/activity/my_activities/activity_record')
+const AddRecord = () => import('@/views/activity/my_activities/add_record')
+const ActivityFirstCheck = () => import('@/views/activity/activity_first_check')
+const ActivitySecondCheck = () => import('@/views/activity/activity_second_check')
+
+//活动记录
+const ClubActivityRecord = () => import('@/views/club_activity_record')
+const AllRecords = () => import('@/views/club_activity_record/all_records')
+const RecordFirstCheck = () => import('@/views/club_activity_record/record_first_check')
+const RecordSecondCheck = () => import('@/views/club_activity_record/record_second_check')
+
+//换届
+const Change = () => import('@/views/change')
+const AllChanges = () => import('@/views/change/all_changes')
+const ChangeFirstCheck = () => import('@/views/change/change_first_check')
+const ChangeSecondCheck = () => import('@/views/change/change_second_check')
+
+//注销
+const Cancel = () => import('@/views/cancel')
+const AllCancels = () => import('@/views/cancel/all_cancels')
+const CancelFirstCheck = () => import('@/views/cancel/cancel_first_check')
+const CancelSecondCheck = () => import('@/views/cancel/cancel_second_check')
 
 
 
 const Excel = () => import('@/views/excel')
-const BasicInfo = () => import('@/views/basic_info')
 const Recruit = () => import('@/views/recruit')
 
 const routes = [
@@ -40,49 +73,80 @@ const routes = [
   },
   {
     path: '/account',
-    component: Account
+    component: Account,
+    name:'Account'
   },
   {
     path: '/role',
-    component: Role
+    component: Role,
+    name:'Role'
   },
   {
     path: '/sort',
-    component: Sort
+    component: Sort,
+    name:'Sort'
   },
+  //公告
   {
     path: '/notice',
     component: Notice,
+    name:'Notice',
     children: [
       {
         path: 'manage',
-        component: NoticeManage
+        component: NoticeManage,
+        name:'NoticeManage'
       },
       {
         path: 'first_check',
-        component: NoticeFirstCheck
+        component: NoticeFirstCheck,
+        name:'NoticeFirstCheck'
       },
       {
         path: 'second_check',
-        component: NoticeSecondCheck
+        component: NoticeSecondCheck,
+        name:'NoticeSecondCheck'
       }
     ]
   },
+  //社团管理
   {
     path: '/club',
     component: Club,
     children: [
       {
         path: 'all_clubs',
-        component: AllClubs
+        component: AllClubs,
+        children: [
+          {
+            path: 'detail/:id?',
+            component: Detail
+          }
+        ]
       },
       {
         path: 'my_club',
         component: MyClub,
-        children:[
+        children: [
           {
-            path:'members',
+            path: 'members',
             component: MyMembers
+          },
+          {
+            path: 'activities',
+            component: MyActivities
+          },
+          {
+            path: 'exit',
+            component: MyExit
+          },
+          {
+            path: 'change',
+            component: MyChange
+          },
+          {
+            path: 'cancel',
+            component: MyCancel
           }
         ]
       },
@@ -96,18 +160,111 @@ const routes = [
       }
     ]
   },
+  //社团活动
   {
-    path: '/excel',
-    component: Excel
+    path: '/activity',
+    component: Activity,
+    children: [
+      {
+        path: 'all_activities',
+        component: AllActivities
+      },
+      {
+        path: 'my_activities',
+        component: MyActivitiies,
+        children: [
+          {
+            path: 'detail',
+            component: ActivityDetail
+          },
+          {
+            path: 'record',
+            component: ActivityRecord
+          },
+          {
+            path: 'add_record',
+            component: AddRecord
+          }
+        ]
+      },
+      {
+        path: 'first_check',
+        component: ActivityFirstCheck
+      },
+      {
+        path: 'second_check',
+        component: ActivitySecondCheck
+      }
+    ]
   },
+  //活动记录
   {
-    path: '/basicInfo',
-    component: BasicInfo
+    path:'/club_activity_record',
+    component:ClubActivityRecord,
+    children:[
+      {
+        path:'all_records',
+        component:AllRecords,
+        name:'AllRecords'
+      },
+      {
+        path:'first_check',
+        component:RecordFirstCheck,
+        name:'RecordFirstCheck'
+      },
+      {
+        path:'second_check',
+        component:RecordSecondCheck,
+        name:'RecordSecondCheck'
+      }
+    ]
   },
+  //社团换届
   {
-    path: '/recruit',
-    component: Recruit
+    path:'/change',
+    component:Change,
+    name:'Change',
+    children:[
+      {
+        path:'all_changes',
+        component:AllChanges,
+        name:'AllChanges'
+      },
+      {
+        path:'first_check',
+        component:ChangeFirstCheck,
+        name:'ChangeFirstCheck'
+      },
+      {
+        path:'second_check',
+        component:ChangeSecondCheck
+      }
+    ]
+  },
+  //社团注销
+  {
+    path:'/cancel',
+    component:Cancel,
+    name:'Cancel',
+    children:[
+      {
+        path:'all_cancels',
+        component:AllCancels,
+        name:'AllCancels'
+      },
+      {
+        path:'first_check',
+        component:CancelFirstCheck,
+        name:'CancelFirstCheck'
+      },
+      {
+        path:'second_check',
+        component:CancelSecondCheck,
+        name:'CancelSecondCheck'
+      }
+    ]
   }
+
 ]
 
 const router = new VueRouter({
